@@ -1,0 +1,6 @@
+﻿@using CocktailWebApp.Data.Dtos
+@model List<DrinkDetailDto>
+
+@foreach(var drink in Model ){
+	<h3>@drink.Name</h3>
+}

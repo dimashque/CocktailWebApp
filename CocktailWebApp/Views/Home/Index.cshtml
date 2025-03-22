@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Welcome to Cocktail World";
+}
+
+<!-- Hero Section -->
+<div class="hero bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome to Cocktail World</h1>
+        <p class="lead">Discover, Explore, and Get Inspired with the Best Cocktail Recipes!</p>
+        <a href="@Url.Action("Index", "Cocktail")" class="btn btn-light btn-lg mt-3">Start Exploring</a>
+    </div>
+</div>
+
+<!-- Featured Categories Section -->
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2 class="display-4">Explore Cocktail Categories</h2>
+            <p class="lead">Find the perfect cocktail for every occasion.</p>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Example Categories -->
+        <div class="col">
+            <div class="card shadow-sm border-light">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Cocktail Category">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Classic Cocktails</h5>
+                    <a href="@Url.Action("Category", "Cocktail", new { id = "Cocktail" })" class="btn btn-outline-primary">View Recipes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm border-light">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Cocktail Category">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Party Drinks</h5>
+                    <a href="@Url.Action("Category", "Cocktail", new { id = "Punch" })" class="btn btn-outline-primary">View Recipes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm border-light">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Cocktail Category">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Seasonal Cocktails</h5>
+                    <a href="@Url.Action("Category", "Cocktail", new { id = "Cocoa" })" class="btn btn-outline-primary">View Recipes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Cocktail of the Week -->
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h2 class="display-4">Cocktail of the Week</h2>
+        <div class="card shadow-sm border-light mx-auto" style="max-width: 600px;">
+            <img src="https://via.placeholder.com/500" class="card-img-top" alt="Cocktail of the Week">
+            <div class="card-body">
+                <h5 class="card-title">Margarita</h5>
+                <p class="card-text">A refreshing cocktail made with tequila, lime, and triple sec. Perfect for any occasion!</p>
+                <a href="@Url.Action("Detail", "Cocktail", new { id = "110" })" class="btn btn-primary">Get Recipe</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container mt-5 mb-5">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2 class="display-4">What People Are Saying</h2>
+            <p class="lead">Here's what our users are saying about Cocktail World.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-light shadow-sm text-center">
+                <div class="card-body">
+                    <p class="card-text">"I found the perfect drink for my party! Easy to follow recipes and delicious results." – Sarah T.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-light shadow-sm text-center">
+                <div class="card-body">
+                    <p class="card-text">"Cocktail World has completely transformed my home bartending experience. Highly recommend!" – James K.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-light shadow-sm text-center">
+                <div class="card-body">
+                    <p class="card-text">"I love trying new recipes every week! Cocktail World has become my go-to for creative cocktails." – Emily L.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Cocktail World. All rights reserved.</p>
+</div>

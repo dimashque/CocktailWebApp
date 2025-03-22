@@ -1,0 +1,144 @@
+﻿@model CocktailWebApp.Data.Dtos.DrinkDetailDto
+
+@{
+    ViewData["Title"] = "Cocktail Detail - " + Model.Name;
+}
+
+<div class="container cocktail-detail">
+    <div class="cocktail-header text-center">
+        <h2 class="cocktail-title text-animated">@Model.Name</h2>
+
+        <!-- Cocktail Image -->
+        <div class="cocktail-image-container">
+            <img src="@Model.DrinkImageUrl" alt="@Model.Name" class="cocktail-image" />
+        </div>
+    </div>
+
+    <!-- Cocktail Info -->
+    <div class="cocktail-info text-center">
+        <p><strong>Category:</strong> @Model.Category</p>
+        <p><strong>Alcoholic:</strong> @Model.Alcoholic</p>
+        <p><strong>Glass Type:</strong> @Model.Glass</p>
+    </div>
+
+    <!-- Cocktail Instructions -->
+    <div class="cocktail-instructions">
+        <h3 class="text-center">Instructions:</h3>
+        <p>@Model.Instructions</p>
+    </div>
+
+    <!-- Ingredients and Measures List -->
+    <div class="cocktail-ingredients">
+        <h3 class="text-center">Ingredients:</h3>
+        <ul class="ingredient-list">
+            @for (int i = 0; i < Model.Ingredients.Count; i++)
+            {
+                <li>
+                    <span class="ingredient-name">@Model.Ingredients[i]</span>
+                    - <span class="ingredient-measure">@Model.Measures[i]</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-to-list text-center">
+        <a href="@Url.Action("Index", "Cocktail")" class="btn-funky">Back to Cocktails</a>
+    </div>
+</div>
+
+<style>
+    .cocktail-detail {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .cocktail-header {
+        margin-bottom: 30px;
+    }
+
+    .cocktail-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #FFD700;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .cocktail-image-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .cocktail-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .cocktail-info {
+        margin-bottom: 20px;
+    }
+
+        .cocktail-info p {
+            font-size: 1.2rem;
+        }
+
+    .cocktail-instructions {
+        margin-bottom: 30px;
+    }
+
+        .cocktail-instructions h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .cocktail-instructions p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+    .cocktail-ingredients {
+        margin-bottom: 30px;
+    }
+
+    .ingredient-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .ingredient-list li {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+    .ingredient-name {
+        font-weight: bold;
+    }
+
+    .ingredient-measure {
+        font-style: italic;
+        color: #FFD700;
+    }
+
+    .back-to-list {
+        margin-top: 20px;
+    }
+
+        .back-to-list .btn-funky {
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            background-color: #FF6F61;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+            .back-to-list .btn-funky:hover {
+                background-color: #FFD700;
+                color: #333;
+                transform: scale(1.1);
+            }
+</style>

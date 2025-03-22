@@ -1,0 +1,33 @@
+﻿@using CocktailWebApp.Data.Dtos
+@model List<DrinkDto>
+
+@{
+    ViewData["Title"] = "Drinks in Category";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Drinks in Category</h1>
+        <p class="lead">Browse through the list of drinks in this category. Click on a drink for more details.</p>
+    </div>
+
+    <!-- Drinks List -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var drink in Model)
+        {
+            <div class="col">
+                <div class="card shadow-sm border-light">
+                    <!-- Drink Thumbnail -->
+                    <img src="@drink.ImageUrl" class="card-img-top" alt="@drink.Name" />
+
+                    <div class="card-body text-center">
+                        <!-- Drink Name as clickable link -->
+                        <a asp-controller="Cocktail" asp-action="Detail" asp-route-id="@drink.Id" class="text-decoration-none">
+                            <h5 class="card-title text-primary">@drink.Name</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

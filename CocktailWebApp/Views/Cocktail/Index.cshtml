@@ -1,0 +1,41 @@
+﻿@using CocktailWebApp.Data.Dtos
+@model List<CocktailCategoryDto>
+
+@{
+    ViewData["Title"] = "Cocktail Categories";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Welcome to the Cocktail World!</h1>
+        <p class="lead">Discover a variety of cocktails by category. Click on a category below to explore more.</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <form asp-controller="Cocktail" asp-action="Search" method="get">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search for a cocktail..." required />
+                    <button type="submit" class="btn btn-funky">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cocktail Categories List -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body text-center">
+                        <a asp-controller="Cocktail" asp-action="Category" asp-route-id="@item.strCategory" class="text-decoration-none">
+                            <h3 class="card-title text-primary">@item.strCategory</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
