@@ -1,0 +1,12 @@
+﻿@using CocktailWebApp.Models
+@model List<Cocktail>
+
+<h3>My Recipes</h3>
+
+@foreach (var cocktail in Model)
+{
+    <a asp-controller="Cocktail" asp-action="MyRecipeDetails" asp-route-id="@cocktail.Id">
+        @cocktail.Name
+    </a>
+    <br />
+}

@@ -1,0 +1,132 @@
+﻿
+@using CocktailWebApp.ViewModel
+@model CreateCocktailViewModel
+
+@{
+    ViewData["Title"] = "Create Cocktail";
+}
+
+<h2>Create New Cocktail</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category" class="control-label"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Alcoholic" class="control-label"></label>
+        <select asp-for="Alcoholic" class="form-control">
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Non-Alcoholic">Non-Alcoholic</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Glass" class="control-label"></label>
+        <input asp-for="Glass" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Instructions" class="control-label"></label>
+        <textarea asp-for="Instructions" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <h3>Ingredients (Max: 15)</h3>
+    <div id="ingredientList">
+        <div class="ingredient-item">
+            <input asp-for="Ingredients[0].Name" class="form-control ingredient-input" placeholder="Ingredient name" required />
+            <input asp-for="Ingredients[0].Amount" class="form-control amount-input" placeholder="Amount (e.g. 30ml)" required />
+            <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
+        </div>
+    </div>
+
+    <button type="button" id="addIngredient" class="btn btn-primary">Add Ingredient</button>
+
+    <br /><br />
+    <button type="submit" class="btn btn-success">Create Cocktail</button>
+</form>
+
+@section Scripts {
+    <script>
+        let ingredientIndex = 1;
+        const maxIngredients = 15;
+
+        document.getElementById("addIngredient").addEventListener("click", function () {
+            if (ingredientIndex >= maxIngredients) {
+                alert("You can only add up to 15 ingredients.");
+                return;
+            }
+
+            let container = document.createElement("div");
+            container.classList.add("ingredient-item");
+
+            let nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.name = `Ingredients[${ingredientIndex}].Name`;  // Use name instead of asp-for
+            nameInput.classList.add("form-control", "ingredient-input");
+            nameInput.placeholder = "Ingredient name";
+            nameInput.required = true;
+
+            let amountInput = document.createElement("input");
+            amountInput.type = "text";
+            amountInput.name = `Ingredients[${ingredientIndex}].Amount`; // Use name instead of asp-for
+            amountInput.classList.add("form-control", "amount-input");
+            amountInput.placeholder = "Amount (e.g. 30ml)";
+            amountInput.required = true;
+
+            let removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.classList.add("btn", "btn-danger", "remove-ingredient");
+            removeButton.textContent = "Remove";
+            removeButton.addEventListener("click", function () {
+                container.remove();
+                ingredientIndex--;
+                updateIngredientIndexes();
+            });
+
+            container.appendChild(nameInput);
+            container.appendChild(amountInput);
+            container.appendChild(removeButton);
+
+            document.getElementById("ingredientList").appendChild(container);
+
+            ingredientIndex++;
+        });
+
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("remove-ingredient")) {
+                e.target.parentElement.remove();
+                ingredientIndex--;
+                updateIngredientIndexes();
+            }
+        });
+
+        function updateIngredientIndexes() {
+            let ingredients = document.querySelectorAll(".ingredient-item");
+            ingredientIndex = 0;
+
+            ingredients.forEach((container, index) => {
+                let nameInput = container.querySelector(".ingredient-input");
+                let amountInput = container.querySelector(".amount-input");
+
+                nameInput.name = `Ingredients[${index}].Name`;
+                amountInput.name = `Ingredients[${index}].Amount`;
+
+                ingredientIndex = index + 1;
+            });
+        }
+
+    </script>
+}
