@@ -22,7 +22,7 @@
 
                     <div class="card-body text-center">
                         <!-- Drink Name as clickable link -->
-                        <a asp-controller="Cocktail" asp-action="Detail" asp-route-id="@drink.Id" class="text-decoration-none">
+                        <a asp-controller="Cocktail" asp-action="@ViewBag.ActionName" asp-route-id="@drink.Id" class="text-decoration-none">
                             <h5 class="card-title text-primary">@drink.Name</h5>
                         </a>
                     </div>

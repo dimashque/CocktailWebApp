@@ -1,5 +1,8 @@
+using CocktailWebApp.Data;
 using CocktailWebApp.Interfaces;
+using CocktailWebApp.Repository;
 using CocktailWebApp.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<ICocktailService, CocktailService>();
+
+builder.Services.AddScoped<ICocktailRepository, CocktailRepository>();
+builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();  
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 var app = builder.Build();
 
