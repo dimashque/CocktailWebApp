@@ -7,8 +7,8 @@
 
 <div class="container mt-5">
     <div class="text-center mb-4">
-        <h1 class="display-4">Drinks in Category</h1>
-        <p class="lead">Browse through the list of drinks in this category. Click on a drink for more details.</p>
+        <h1 class="display-3 page-title">Drinks in Category</h1>
+        <p class="lead">Browse through the best cocktails in this category. Click on a drink to learn more!</p>
     </div>
 
     <!-- Drinks List -->
@@ -16,14 +16,14 @@
         @foreach (var drink in Model)
         {
             <div class="col">
-                <div class="card shadow-sm border-light">
+                <div class="drink-card">
                     <!-- Drink Thumbnail -->
-                    <img src="@drink.ImageUrl" class="card-img-top" alt="@drink.Name" />
+                    <img src="@drink.ImageUrl" alt="@drink.Name" class="drink-img" />
 
                     <div class="card-body text-center">
                         <!-- Drink Name as clickable link -->
-                        <a asp-controller="Cocktail" asp-action="@ViewBag.ActionName" asp-route-id="@drink.Id" class="text-decoration-none">
-                            <h5 class="card-title text-primary">@drink.Name</h5>
+                        <a asp-controller="Cocktail" asp-action="@ViewBag.ActionName" asp-route-id="@drink.Id" class="drink-title">
+                            @drink.Name
                         </a>
                     </div>
                 </div>

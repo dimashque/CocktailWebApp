@@ -1,63 +1,65 @@
-﻿
-@using CocktailWebApp.ViewModel
+﻿@using CocktailWebApp.ViewModel
 @model CreateCocktailViewModel
 
 @{
     ViewData["Title"] = "Create Cocktail";
 }
 
-<h2>Create New Cocktail</h2>
+<div class="create-cocktail-container">
+    <h2 class="title">Create New Cocktail</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" required />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Category" class="control-label"></label>
-        <input asp-for="Category" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Alcoholic" class="control-label"></label>
-        <select asp-for="Alcoholic" class="form-control">
-            <option value="Alcoholic">Alcoholic</option>
-            <option value="Non-Alcoholic">Non-Alcoholic</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Glass" class="control-label"></label>
-        <input asp-for="Glass" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Instructions" class="control-label"></label>
-        <textarea asp-for="Instructions" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ImageUrl" class="control-label"></label>
-        <input asp-for="ImageUrl" class="form-control" />
-    </div>
-
-    <h3>Ingredients (Max: 15)</h3>
-    <div id="ingredientList">
-        <div class="ingredient-item">
-            <input asp-for="Ingredients[0].Name" class="form-control ingredient-input" placeholder="Ingredient name" required />
-            <input asp-for="Ingredients[0].Amount" class="form-control amount-input" placeholder="Amount (e.g. 30ml)" required />
-            <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
+    <form asp-action="Create" method="post" class="cocktail-form">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-    </div>
 
-    <button type="button" id="addIngredient" class="btn btn-primary">Add Ingredient</button>
+        <div class="form-group">
+            <label asp-for="Category" class="control-label"></label>
+            <input asp-for="Category" class="form-control" />
+        </div>
 
-    <br /><br />
-    <button type="submit" class="btn btn-success">Create Cocktail</button>
-</form>
+        <div class="form-group">
+            <label asp-for="Alcoholic" class="control-label"></label>
+            <select asp-for="Alcoholic" class="form-control">
+                <option value="Alcoholic">Alcoholic</option>
+                <option value="Non-Alcoholic">Non-Alcoholic</option>
+            </select>
+        </div>
 
+        <div class="form-group">
+            <label asp-for="Glass" class="control-label"></label>
+            <input asp-for="Glass" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Instructions" class="control-label"></label>
+            <textarea asp-for="Instructions" class="form-control instructions" maxlength="500"></textarea>
+            <small class="char-count">500 characters remaining</small>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImageUrl" class="control-label"></label>
+            <input asp-for="ImageUrl" class="form-control image-input" />
+            <img id="imagePreview" src="" alt="Cocktail Image Preview" class="hidden-preview" />
+        </div>
+
+        <h3>Ingredients (Max: 15)</h3>
+        <div id="ingredientList">
+            <div class="ingredient-item">
+                <input asp-for="Ingredients[0].Name" class="form-control ingredient-input" placeholder="Ingredient name" required />
+                <input asp-for="Ingredients[0].Amount" class="form-control amount-input" placeholder="Amount (e.g. 30ml)" required />
+                <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
+            </div>
+        </div>
+
+        <button type="button" id="addIngredient" class="btn btn-primary">Add Ingredient</button>
+
+        <br /><br />
+        <button type="submit" class="btn btn-success">Create Cocktail</button>
+    </form>
+</div>
 @section Scripts {
     <script>
         let ingredientIndex = 1;
@@ -74,14 +76,14 @@
 
             let nameInput = document.createElement("input");
             nameInput.type = "text";
-            nameInput.name = `Ingredients[${ingredientIndex}].Name`;  // Use name instead of asp-for
+            nameInput.name = `Ingredients[${ingredientIndex}].Name`;
             nameInput.classList.add("form-control", "ingredient-input");
             nameInput.placeholder = "Ingredient name";
             nameInput.required = true;
 
             let amountInput = document.createElement("input");
             amountInput.type = "text";
-            amountInput.name = `Ingredients[${ingredientIndex}].Amount`; // Use name instead of asp-for
+            amountInput.name = `Ingredients[${ingredientIndex}].Amount`;
             amountInput.classList.add("form-control", "amount-input");
             amountInput.placeholder = "Amount (e.g. 30ml)";
             amountInput.required = true;
@@ -128,5 +130,18 @@
             });
         }
 
+        // Live Character Counter for Instructions
+        document.querySelector(".instructions").addEventListener("input", function () {
+            let maxLength = 500;
+            let currentLength = this.value.length;
+            document.querySelector(".char-count").textContent = `${maxLength - currentLength} characters remaining`;
+        });
+
+        // Live Image Preview
+        document.querySelector(".image-input").addEventListener("input", function () {
+            let preview = document.getElementById("imagePreview");
+            preview.src = this.value;
+            preview.style.display = this.value ? "block" : "none";
+        });
     </script>
 }

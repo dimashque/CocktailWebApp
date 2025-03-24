@@ -1,6 +1,23 @@
 ﻿@using CocktailWebApp.Data.Dtos
 @model List<DrinkDetailDto>
 
-@foreach(var drink in Model ){
-	<h3>@drink.Name</h3>
-}
+<div class="cocktail-list-container">
+    @foreach (var drink in Model)
+    {
+        <div class="cocktail-item">
+            <h3 class="cocktail-name">@drink.Name</h3>
+
+            <!-- Display cocktail image if available -->
+            @if (!string.IsNullOrEmpty(drink.DrinkImageUrl))
+            {
+                <img src="@drink.DrinkImageUrl" alt="@drink.Name" class="cocktail-image" />
+            }
+
+            <!-- Display cocktail category -->
+            <p class="cocktail-category"><strong>Category:</strong> @drink.Category</p>
+
+            <!-- Display a link to the detail page -->
+            <a asp-controller="Cocktail" asp-action="Detail" asp-route-id="@drink.Id" class="btn btn-info">View Details</a>
+        </div>
+    }
+</div>

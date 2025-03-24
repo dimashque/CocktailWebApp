@@ -1,155 +1,579 @@
-/* General Styles */
+/* Summer-Inspired Theme */
+:root {
+    --primary-color: #ff9800;
+    --secondary-color: #ffcc80;
+    --accent-color: #ffeb3b;
+    --text-color: #333;
+    --nav-bg: rgba(255, 152, 0, 0.85);
+    --nav-bg-scrolled: rgba(255, 87, 34, 0.95);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #FF6F61, #FFD700);
-    color: white;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    background: #fff3e0;
+    color: var(--text-color);
 }
 
-h1, h2, h3 {
-    font-family: 'Lobster', cursive;
+/* Navbar */
+.navbar {
+    transition: background 0.4s ease-in-out;
+    background: var(--nav-bg);
 }
 
-/* Footer Styling */
-/* Ensure the content takes up all available space */
-
-
-/* Footer styling */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    margin-top: auto; /* Push footer to bottom if content is short */
-}
-
-    footer a {
-        color: #00BFFF;
-        text-decoration: none;
+    .navbar.scrolled {
+        background: var(--nav-bg-scrolled);
     }
 
-        footer a:hover {
-            text-decoration: underline;
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: var(--accent-color);
+    }
+
+/* Call-to-action Button */
+.create-drink {
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+    .create-drink:hover {
+        background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+        transform: scale(1.05);
+    }
+
+/* Main Content */
+.main-content {
+    padding-top: 80px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-color);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+    .footer p {
+        margin: 0;
+    }
+
+.social-icons {
+    margin-top: 10px;
+}
+
+    .social-icons a {
+        color: white;
+        font-size: 20px;
+        margin: 0 10px;
+        transition: transform 0.3s;
+    }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
         }
 
-.container {
-    margin: 50px auto;
-    max-width: 1200px;
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* Funky Button Style */
-.btn-funky {
-    background-color: #FFD700;
-    color: #333;
-    padding: 10px 20px;
-    border-radius: 30px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-}
-
-    .btn-funky:hover {
-        background-color: #FF6F61;
-        color: white;
-        transform: scale(1.1);
-    }
-
-/* Funky Hero Section */
-.hero {
-    background: radial-gradient(circle, rgba(255, 105, 180, 0.8), rgba(255, 69, 0, 0.8)), url('https://via.placeholder.com/1600x800');
-    background-size: cover;
-    padding: 150px 0;
-    text-align: center;
+/* Privacy Link */
+.privacy-link {
+    display: block;
     color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-    .hero h1 {
-        font-size: 4rem;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    .privacy-link:hover {
+        text-decoration: underline;
     }
 
-    .hero p {
-        font-size: 1.5rem;
-        margin-top: 20px;
-    }
-
-    .hero .btn {
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-size: 1.2rem;
-    }
-
-/* Funky Cards */
-.card {
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-    .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .card img {
-        border-radius: 15px 15px 0 0;
-    }
-
-.card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-/* Animated Text */
-.text-animated {
-    animation: bounce 2s infinite;
-}
-
-/* Bounce Animation */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-/* Footer Styling */
-footer {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    margin-top: 50px;
-}
-
-    footer p {
-        font-size: 1.2rem;
-    }
-
-/* Page-specific Animations */
-.page-category .card-body {
-    animation: fadeInUp 1s ease-in-out;
-}
-
-@keyframes fadeInUp {
-    0% {
+/* Animations */
+@keyframes fadeIn {
+    from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-10px);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #ff9800, #ffcc80, #ffeb3b);
+    padding: 100px 0;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn {
+    background: white;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .hero-btn:hover {
+        transform: scale(1.1);
+    }
+
+/* Category Cards */
+.category-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+    .category-card:hover {
+        transform: scale(1.05);
+    }
+
+    .category-card img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+/* Cocktail of the Week */
+.cocktail-week {
+    background: url('/images/summer-bg.jpg') center/cover no-repeat;
+    padding: 60px 0;
+    color: white;
+}
+
+.cocktail-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+    .cocktail-card img {
+        width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .cocktail-card img:hover {
+            transform: scale(1.1);
+        }
+
+/* Testimonials */
+.testimonials {
+    margin-top: 50px;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+    .testimonial-card:hover {
+        transform: scale(1.05);
+    }
+
+/* Page Title */
+.page-title {
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff9800, #ffcc80, #ffeb3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Drink Card */
+.drink-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .drink-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+/* Drink Image */
+.drink-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.drink-card:hover .drink-img {
+    transform: scale(1.1);
+}
+
+/* Drink Title */
+.drink-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+    .drink-title:hover {
+        color: #ff9800;
+    }
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #ff9800, #ffcc80, #ffeb3b);
+    color: white;
+    padding: 60px 0;
+    border-radius: 12px;
+}
+
+.hero-title {
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Bar */
+.search-bar {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.btn-search {
+    background: #ff9800;
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+    .btn-search:hover {
+        background: #ffcc80;
+        color: black;
+    }
+
+/* Category Card */
+.category-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .category-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+/* Category Link */
+.category-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.category-link:hover {
+    color: #ff9800;
+}
+
+/* Cocktail Detail Page */
+.cocktail-detail {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animated Title */
+.text-animated {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Smooth Image Display */
+.cocktail-image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cocktail-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+    .cocktail-image:hover {
+        transform: scale(1.05);
+    }
+
+/* Cocktail Info */
+.cocktail-info p {
+    font-size: 1.2rem;
+    margin: 8px 0;
+}
+
+/* Instructions Section */
+.cocktail-instructions {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .cocktail-instructions h3 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .cocktail-instructions p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+/* Ingredients Section */
+.cocktail-ingredients {
+    margin-bottom: 30px;
+}
+
+.ingredient-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .ingredient-list li {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .ingredient-list li:hover {
+            transform: scale(1.05);
+            color: #ff9800;
+        }
+
+/* Ingredient Name & Measure Styling */
+.ingredient-name {
+    font-weight: bold;
+}
+
+.ingredient-measure {
+    font-style: italic;
+    color: #FFD700;
+}
+
+/* Back Button */
+.back-to-list {
+    margin-top: 20px;
+}
+
+.btn-funky {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    background-color: #FF6F61;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+    .btn-funky:hover {
+        background-color: #FFD700;
+        color: #333;
+        transform: scale(1.1);
+    }
+
+/* Smooth Fade-in Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* General Form Styling */
+.create-cocktail-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6f61;
+}
+
+/* Form Fields */
+.form-control {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+textarea.instructions {
+    height: 100px;
+    resize: none;
+}
+
+/* Character Count for Instructions */
+.char-count {
+    display: block;
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: -8px;
+    text-align: right;
+}
+
+/* Image Preview */
+.hidden-preview {
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+/* Ingredient List */
+.ingredient-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredient-input,
+.amount-input {
+    flex: 1;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-success {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .btn-primary:hover,
+    .btn-success:hover {
+        transform: scale(1.05);
+    }
+
+/* Cocktail List Styling */
+.cocktail-list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.cocktail-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+    .cocktail-item:hover {
+        transform: translateY(-5px);
+    }
+
+.cocktail-name {
+    font-size: 1.5rem;
+    color: #ff6f61;
+}
+
+.cocktail-category {
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+.cocktail-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.btn-info {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: #ff6f61;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .btn-info:hover {
+        background: #e85a4f;
+    }
+
+
+

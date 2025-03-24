@@ -5,19 +5,20 @@
     ViewData["Title"] = "Cocktail Categories";
 }
 
-<div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1 class="display-4">Welcome to the Cocktail World!</h1>
-        <p class="lead">Discover a variety of cocktails by category. Click on a category below to explore more.</p>
-    </div>
+<!-- Hero Section -->
+<div class="hero-section text-center py-5">
+    <h1 class="display-3 hero-title">Welcome to the Cocktail World! 🍸</h1>
+    <p class="lead">Discover the finest cocktails, sorted by category. Click on a category to explore more!</p>
+</div>
 
+<div class="container mt-4">
     <!-- Search Bar -->
     <div class="row justify-content-center mb-4">
         <div class="col-md-6">
             <form asp-controller="Cocktail" asp-action="Search" method="get">
-                <div class="input-group">
-                    <input type="text" name="query" class="form-control" placeholder="Search for a cocktail..." required />
-                    <button type="submit" class="btn btn-funky">Search</button>
+                <div class="input-group search-bar">
+                    <input type="text" name="query" class="form-control search-input" placeholder="Search for a cocktail..." required />
+                    <button type="submit" class="btn btn-search">Search</button>
                 </div>
             </form>
         </div>
@@ -28,12 +29,10 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card shadow-sm border-light">
-                    <div class="card-body text-center">
-                        <a asp-controller="Cocktail" asp-action="Category" asp-route-id="@item.strCategory" class="text-decoration-none">
-                            <h3 class="card-title text-primary">@item.strCategory</h3>
-                        </a>
-                    </div>
+                <div class="category-card">
+                    <a asp-controller="Cocktail" asp-action="Category" asp-route-id="@item.strCategory" class="category-link">
+                        <h3 class="category-title">@item.strCategory</h3>
+                    </a>
                 </div>
             </div>
         }
