@@ -13,6 +13,10 @@ namespace CocktailWebApp.Models
         public string? Glass { get; set; }
         public string? Instructions { get; set; }
         public string? ImageUrl { get; set; }
+
+        public string? CreatorId { get; set; }
+
+        public AppUser? Creator { get; set; }
         public ICollection<CocktailIngredient> CocktailIngredients { get; set; } = new List<CocktailIngredient>();
         public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
