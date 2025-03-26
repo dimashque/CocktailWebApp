@@ -17,6 +17,10 @@ namespace CocktailWebApp.Models
         public string? CreatorId { get; set; }
 
         public AppUser? Creator { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+        public ICollection<AppUser> LikedByUsers { get; set; }  = new List<AppUser>();
+        public ICollection<AppUser> BookedmarkedByUsers { get; set; } = new List<AppUser>();
         public ICollection<CocktailIngredient> CocktailIngredients { get; set; } = new List<CocktailIngredient>();
         public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }

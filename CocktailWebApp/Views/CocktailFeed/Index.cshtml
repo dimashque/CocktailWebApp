@@ -1,7 +1,6 @@
 ﻿@using CocktailWebApp.ViewModel
 @model List<FeedViewModel>
 
-
 @{
     ViewData["Title"] = "Cocktail Feed";
 }
@@ -33,6 +32,20 @@
                             <div class="cocktail-card-body">
                                 <h4 class="cocktail-name">@cocktail.Name</h4>
                                 <p class="cocktail-category">@cocktail.Category</p>
+
+                                <!-- Timestamps -->
+                                <p class="cocktail-timestamp">@cocktail.CreatedDate.ToString()</p>
+
+                                <!-- Buttons: Shake Up & Save -->
+                                <div class="cocktail-buttons">
+                                    <button class="btn btn-shakeUp">
+                                        <i class="fa fa-thumbs-up"></i> Shake Up
+                                    </button>
+                                    <button class="btn btn-save">
+                                        <i class="fa fa-bookmark"></i> Save
+                                    </button>
+                                </div>
+
                                 <a href="@Url.Action("Details", "Cocktail", new { id = cocktail.Id })" class="btn-view-details">View Recipe</a>
                             </div>
                         </div>
