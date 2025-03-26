@@ -16,7 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<ICocktailService, CocktailService>();
 
 builder.Services.AddScoped<ICocktailRepository, CocktailRepository>();
-builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();  
+builder.Services.AddScoped<IIngredientRepository, IngredientRepository>(); 
+builder.Services.AddScoped<ICocktailFeedRepository, CocktailFeedRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

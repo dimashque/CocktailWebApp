@@ -1,0 +1,44 @@
+﻿@using CocktailWebApp.ViewModel
+@model List<FeedViewModel>
+
+
+@{
+    ViewData["Title"] = "Cocktail Feed";
+}
+
+<div class="container cocktail-feed-container">
+    <h1 class="text-center feed-title">🍸 Discover Unique Cocktails from the Community 🍸</h1>
+
+    <div class="row">
+        @foreach (var user in Model)
+        {
+            <div class="col-md-6 col-lg-4 user-feed">
+                <div class="user-card">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="@user.ImageUrl" alt="@user.UserName" class="avatar-img" />
+                        </div>
+                        <div class="user-details">
+                            <h3 class="user-name">@user.UserName</h3>
+                            <p class="user-rank">Rank: <span class="rank-highlight">@user.Rank</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cocktail-list">
+                    @foreach (var cocktail in user.CreatedCocktails)
+                    {
+                        <div class="cocktail-card">
+                            <img src="@cocktail.ImageUrl" alt="@cocktail.Name" class="cocktail-card-img" />
+                            <div class="cocktail-card-body">
+                                <h4 class="cocktail-name">@cocktail.Name</h4>
+                                <p class="cocktail-category">@cocktail.Category</p>
+                                <a href="@Url.Action("Details", "Cocktail", new { id = cocktail.Id })" class="btn-view-details">View Recipe</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
