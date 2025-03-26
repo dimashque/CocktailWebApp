@@ -693,21 +693,52 @@ textarea.instructions {
     color: #777;
 }
 
+.cocktail-timestamp {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* Buttons: Shake Up & Save */
+.cocktail-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-shakeUp, .btn-save {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-shakeUp {
+    background-color: #ff6f61;
+    color: #fff;
+}
+
+    .btn-shakeUp:hover {
+        background-color: #e85a4f;
+    }
+
+.btn-save {
+    background-color: #ffdb58;
+    color: #333;
+}
+
+    .btn-save:hover {
+        background-color: #f4c72b;
+    }
+
 .btn-view-details {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 12px;
-    font-size: 1rem;
-    background: #ff6f61;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-}
+    font-size: 1rem
 
-    .btn-view-details:hover {
-        background: #e85a4f;
-    }
 
 
 
