@@ -72,7 +72,7 @@ namespace CocktailWebApp.Controllers
 
         }
 
-        public async Task <IActionResult> MyRecipeDetails(int id)
+        public async Task <IActionResult> RecipeDetails(int id)
         {
             var myCocktail = await _cocktailRepository.GetByIdAsync(id);
             if (myCocktail == null) return View("Error");

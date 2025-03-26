@@ -6,50 +6,62 @@
 }
 
 <div class="container cocktail-feed-container">
-    <h1 class="text-center feed-title">🍸 Discover Unique Cocktails from the Community 🍸</h1>
+    <h1 class="text-center feed-title">🍹 Discover Unique Cocktails 🍹</h1>
 
     <div class="row">
-        @foreach (var user in Model)
+        @foreach (var cocktail in Model)
         {
-            <div class="col-md-6 col-lg-4 user-feed">
-                <div class="user-card">
-                    <div class="user-info">
-                        <div class="user-avatar">
-                            <img src="@user.ImageUrl" alt="@user.UserName" class="avatar-img" />
+            <div class="col-md-6 col-lg-4 cocktail-item">
+                <div class="cocktail-card">
+                    <!-- Cocktail Image -->
+                    <img src="@cocktail.ImageUrl" alt="@cocktail.Name" class="cocktail-card-img" />
+
+                    <!-- Cocktail Info -->
+                    <div class="cocktail-card-body">
+                        <h4 class="cocktail-name">@cocktail.Name</h4>
+                        <p class="cocktail-category">@cocktail.Category</p>
+
+                        <!-- Created by User -->
+                        <p class="cocktail-creator">
+                            Created by <strong>@cocktail.UserName</strong>
+                            <span class="user-rank">(Rank: @cocktail.Rank)</span>
+                        </p>
+
+                        <!-- Timestamp -->
+                        <p class="cocktail-timestamp">
+                            <i class="fa fa-clock"></i> @cocktail.CreatedDate?.ToString("MMM dd, yyyy")
+                        </p>
+
+                        <!-- Interaction Buttons -->
+                        <div class="cocktail-buttons">
+                            <!-- Cheers (Like) Form -->
+                            <form asp-action="Cheers" method="post" class="cheers-form">
+                                <input type="hidden" name="CocktailId" value="@cocktail.CocktailID" />
+                                <button type="submit" class="btn btn-cheers">
+                                    <i class="fa fa-glass-cheers"></i>
+                                    @cocktail.LikedByUsers.Any( e => e.Id == User.GetUserID()) ?  "UnCheer" : "Cheer"
+                                     
+                                    <span class="count">(@cocktail.LikesCount)</span>
+                                </button>
+                            </form>
+
+                            <!-- Save (Bookmark) Form -->
+                            <form asp-action="Save" method="post" class="save-form">
+                                <input type="hidden" name="CocktailId" value="@cocktail.CocktailID" />
+                                <button type="submit" class="btn btn-save">
+                                    
+                                    <i class="fa fa-bookmark"></i>
+                                    @cocktail.LikedByUsers.Any(e => e.Id == User.GetUserID()) ?  "Unsave" : "Bookmark"
+                                    <span class="count">(@cocktail.BookmarksCount)</span>
+                                </button>
+                            </form>
                         </div>
-                        <div class="user-details">
-                            <h3 class="user-name">@user.UserName</h3>
-                            <p class="user-rank">Rank: <span class="rank-highlight">@user.Rank</span></p>
-                        </div>
+
+                        <!-- View Cocktail Details -->
+                        <a href="@Url.Action("Details", "Cocktail", new { id = cocktail.CocktailID })" class="btn-view-details">
+                            View Recipe
+                        </a>
                     </div>
-                </div>
-
-                <div class="cocktail-list">
-                    @foreach (var cocktail in user.CreatedCocktails)
-                    {
-                        <div class="cocktail-card">
-                            <img src="@cocktail.ImageUrl" alt="@cocktail.Name" class="cocktail-card-img" />
-                            <div class="cocktail-card-body">
-                                <h4 class="cocktail-name">@cocktail.Name</h4>
-                                <p class="cocktail-category">@cocktail.Category</p>
-
-                                <!-- Timestamps -->
-                                <p class="cocktail-timestamp">@cocktail.CreatedDate.ToString()</p>
-
-                                <!-- Buttons: Shake Up & Save -->
-                                <div class="cocktail-buttons">
-                                    <button class="btn btn-shakeUp">
-                                        <i class="fa fa-thumbs-up"></i> Shake Up
-                                    </button>
-                                    <button class="btn btn-save">
-                                        <i class="fa fa-bookmark"></i> Save
-                                    </button>
-                                </div>
-
-                                <a href="@Url.Action("Details", "Cocktail", new { id = cocktail.Id })" class="btn-view-details">View Recipe</a>
-                            </div>
-                        </div>
-                    }
                 </div>
             </div>
         }

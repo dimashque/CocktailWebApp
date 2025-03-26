@@ -575,7 +575,7 @@ textarea.instructions {
         background: #e85a4f;
     }
 
-/* Cocktail Feed Styling */
+/* Main Container */
 .cocktail-feed-container {
     padding: 40px 0;
     max-width: 1200px;
@@ -590,72 +590,9 @@ textarea.instructions {
     margin-bottom: 40px;
 }
 
-/* User Profile Card */
-.user-feed {
+/* Cocktail Card */
+.cocktail-item {
     margin-bottom: 30px;
-}
-
-.user-card {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-    .user-card:hover {
-        transform: translateY(-5px);
-    }
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.user-avatar {
-    width: 50px;
-    height: 50px;
-}
-
-.avatar-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ff6f61;
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-name {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.user-rank {
-    font-size: 1rem;
-    color: #777;
-}
-
-.rank-highlight {
-    font-weight: bold;
-    color: #ff6f61;
-}
-
-/* Cocktail Cards */
-.cocktail-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 15px;
 }
 
 .cocktail-card {
@@ -664,26 +601,26 @@ textarea.instructions {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
     .cocktail-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     }
 
 .cocktail-card-img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
 }
 
+/* Card Body */
 .cocktail-card-body {
-    padding: 10px;
+    padding: 15px;
 }
 
 .cocktail-name {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #ff6f61;
 }
@@ -693,20 +630,31 @@ textarea.instructions {
     color: #777;
 }
 
+.cocktail-creator {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 5px;
+}
+
+.user-rank {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
 .cocktail-timestamp {
     font-size: 0.9rem;
     color: #aaa;
     margin-top: 5px;
 }
 
-/* Buttons: Shake Up & Save */
+/* Buttons */
 .cocktail-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
 }
 
-.btn-shakeUp, .btn-save {
+.btn-cheers, .btn-save {
     padding: 8px 16px;
     font-size: 1rem;
     border-radius: 5px;
@@ -715,12 +663,12 @@ textarea.instructions {
     transition: all 0.3s ease;
 }
 
-.btn-shakeUp {
+.btn-cheers {
     background-color: #ff6f61;
     color: #fff;
 }
 
-    .btn-shakeUp:hover {
+    .btn-cheers:hover {
         background-color: #e85a4f;
     }
 
@@ -733,11 +681,32 @@ textarea.instructions {
         background-color: #f4c72b;
     }
 
+.count {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
 .btn-view-details {
-    display: inline-block;
+    display: block;
     margin-top: 10px;
     padding: 8px 12px;
-    font-size: 1rem
+    font-size: 1rem;
+    background: #ff6f61;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+    .btn-view-details:hover {
+        background: #e85a4f;
+    }
+
+/* Form Style (For alignment) */
+.cheers-form, .save-form {
+    display: inline;
+}
+
 
 
 

@@ -12,6 +12,9 @@ namespace CocktailWebApp.Data
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<CocktailIngredient> CocktailIngredient { get; set; }
 
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Bookmark> Bookmarks { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,7 +58,7 @@ namespace CocktailWebApp.Data
           j.HasKey(l => new { l.AppUserId, l.CocktailId });
           j.Property(l => l.CreatedDate)
             .HasDefaultValueSql("GETDATE()");  // Default timestamp when the like is created
-          j.ToTable("Likes");
+          j.ToTable("Bookmarks");
       }
   );
 

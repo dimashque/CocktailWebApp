@@ -9,40 +9,76 @@ namespace CocktailWebApp.Controllers
 {
     public class CocktailFeedController : Controller
     {
-        public void MapUsersToVM(List<AppUser> appUsers, List<FeedViewModel> feedVM)
+        public void MapCreatedCocktailsToVM(List<Cocktail> cocktails, List<FeedViewModel> feedVM)
         {
-            foreach (AppUser user in appUsers)
+            foreach (var cocktail in cocktails)
             {
-                var userFeedVm = new FeedViewModel
+                var cocktailFeedVM = new FeedViewModel
                 {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    Rank = user.Rank,
-                    ImageUrl = user.ProfileImageUrl,
-                    CreatedCocktails = user.CreatedCocktails
-                };
+                    CocktailID = cocktail.Id,
+                    Name = cocktail.Name,
+                    Category = cocktail.Category,
+                    Alcoholic = cocktail.Alcoholic,
+                    ImageUrl = cocktail.ImageUrl,
+                    UserName = cocktail.Creator.UserName,
+                    Rank = cocktail.Creator.Rank,
+                    LikesCount = cocktail.LikedByUsers.Count,
+                    BookmarksCount = cocktail.BookedmarkedByUsers.Count,
+                    CreatedDate = cocktail.CreatedDate,
+                    LikedByUsers = cocktail.LikedByUsers,
+                    BookedmarkedByUsers =cocktail.BookedmarkedByUsers,
 
-                feedVM.Add(userFeedVm);
+                };
+                feedVM.Add(cocktailFeedVM);
             }
         }
         private readonly ICocktailFeedRepository _cocktailFeedRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CocktailFeedController (ICocktailFeedRepository cocktailFeedRepository)
+        public CocktailFeedController (ICocktailFeedRepository cocktailFeedRepository, IHttpContextAccessor httpContextAccessor)
         {
             _cocktailFeedRepository = cocktailFeedRepository;
+            _httpContextAccessor = httpContextAccessor;
             
         }
         public async Task <IActionResult> Index()
         {
-            var users = await _cocktailFeedRepository.GetAllUsersAsync();
+            var createdCocktails = await _cocktailFeedRepository.GetAllCreatedCocktailsAsync();
 
-            if (users.Count() == 0) return RedirectToAction("Category", "Cocktail");
+            if (createdCocktails == null) { return View("Error"); }
+            List<FeedViewModel> feeds = new List<FeedViewModel>();
 
-            var curUsersFeedVM = new List<FeedViewModel>();
-
-            MapUsersToVM(users, curUsersFeedVM);
+            MapCreatedCocktailsToVM(createdCocktails, feeds);
+           
             
-            return View(curUsersFeedVM);
+            return View(feeds);
+        }
+        [HttpPost]
+        public async Task <IActionResult> Cheers(LikeViewModel likeVM)
+        {
+            if(!ModelState.IsValid) return View("Error");
+
+            var curUserID = _httpContextAccessor.HttpContext.User.GetUserID();
+
+
+            await _cocktailFeedRepository.LikeUnlikeAsync(likeVM.CocktailId, curUserID);
+
+            return RedirectToAction("RecipeDetail", "Cocktail", new { id = likeVM.CocktailId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Bookmark(LikeViewModel likeVM)
+        {
+            if (!ModelState.IsValid) return View("Error");
+
+            var curUserID = _httpContextAccessor.HttpContext.User.GetUserID();
+
+
+            await _cocktailFeedRepository.BookUnBookMark(likeVM.CocktailId, curUserID);
+
+            return RedirectToAction("RecipeDetail", "Cocktail", new {id = likeVM.CocktailId});
+
+
         }
     }
 }
